@@ -1,3 +1,11 @@
+Short description:
+- This GraphQL web api project is to solve the problems like under-fetching or over-fetching of data that we usually encounter with RESTful APIs.
+- This project simplifies the client and server communication as all the calls go through same single end-point.
+- This project achives the CRUD operations for below for an restaurant
+    - Menu
+    - Category
+    - Reservation of a table
+
 localhost testing:
 
 **1. Query**
