@@ -3,6 +3,7 @@ using GraphQL;
 using GraphQL.Types;
 using GraphQL_Project.Data;
 using GraphQL_Project.Interfaces;
+using GraphQL_Project.Mutations;
 using GraphQL_Project.Queries;
 using GraphQL_Project.Repositories;
 using GraphQL_Project.Schema;
@@ -21,18 +22,27 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddControllers();
 
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddTransient<MenuType>();
+builder.Services.AddTransient<CategoryType>();
+builder.Services.AddTransient<ReservationType>();
+
+builder.Services.AddTransient<MenuInputType>();
+builder.Services.AddTransient<CategoryInputType>();
+builder.Services.AddTransient<ReservationInputType>();
+
 builder.Services.AddScoped<IMenuRepository, MenuRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 
-builder.Services.AddScoped<CategoryType>();
-builder.Services.AddScoped<MenuType>();
-builder.Services.AddScoped<ReservationType>();
-
-builder.Services.AddScoped<CategoryQuery>();
 builder.Services.AddScoped<MenuQuery>();
+builder.Services.AddScoped<CategoryQuery>();
 builder.Services.AddScoped<ReservationQuery>();
 builder.Services.AddScoped<RootQuery>();
+
+builder.Services.AddScoped<MenuMutation>();
+builder.Services.AddScoped<CategoryMutation>();
+builder.Services.AddScoped<ReservationMutation>();
+builder.Services.AddScoped<RootMutation>();
 
 builder.Services.AddScoped<ISchema, RootSchema>();
 builder.Services.AddGraphQL(b=> b.AddAutoSchema<ISchema>().AddSystemTextJson());
